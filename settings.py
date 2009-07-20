@@ -83,3 +83,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'dontpaythestate.remember',
 )
+
+from settings_local import *

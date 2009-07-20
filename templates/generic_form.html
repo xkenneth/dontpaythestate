@@ -11,7 +11,24 @@
 Enter your email and the expiration date of your registration sticker below to be reminded to renew your sticker!
 <form method="POST" action=".">
 {{ form.as_p }}
+
+<!-- START RECAPTCHA -->
+<p>Prove you're not a robot:</p>  
+
+<script>var RecaptchaOptions = {theme : 'white'};</script>  
+
+<script type="text/javascript" src="http://api.recaptcha.net/challenge?k=PUBLIC_KEY{{ captcha_error }}"></script>  
+
+<noscript>  
+  <iframe src="http://api.recaptcha.net/noscript?k=PUBLIC_KEY{{ captcha_error }}"  
+          height="300" width="500" frameborder="0"></iframe><br />  
+  <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>  
+  <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>  
+</noscript> 
+<!-- END RECAPTCHA -->
+
 <input id="submit" value="Submit" type="submit">
+
 </form>
 
 {% endblock body %}
