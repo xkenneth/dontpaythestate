@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ form.media }}
+{% endblock head %}
+
+{% block body %}
+  Enter your email to unsubscribe. <br>
+
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  
+  <form action="removed" method="post">
+    Email:
+    <input type="text" name="email" />
+    <input type="submit" value="Unsubscribe!"/>
+  </form>
+
+{% endblock body %}  
+
