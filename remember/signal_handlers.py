@@ -1,17 +1,26 @@
+###
+### Don't Pay The State!
+### Author: Kenneth Miller
+###
+### Thise file defines "handlers" or actions that are trigged on certain events.
+###
+
+### IMPORTS
 from django.db.models.signals import post_save, post_delete
 from dontpaythestate.remember.models import *
 from django.core.mail import send_mail
 
-
-#uids!
 import uuid
 
+#define the web_url
 web_url = "http://www.dontpaythestate.com"
 
+
 def subscribe_handler(sender, instance, created, **kwargs):
-    if created:
-        t = InactiveUsers(email_address=instance.email_address,uid=uuid.uuid4().hex)
-        t.save()
+    """This handler is fired when a Subscription object is created."""
+    #if created:
+    #    t = InactiveUsers(email_address=instance.email_address,uid=uuid.uuid4().hex)
+    #    t.save()
 
     send_mail('Thanks for Registering!', 
               'Use the URL below to confirm.\r %s' % (web_url + '/activate/' + t.uid),
@@ -26,4 +35,4 @@ def confirm_handler(sender, instance, **kwargs):
               'noreply@dontpaythestate.com',
               [instance.email_address], fail_silently=False)
 
-post_delete.connect(confirm_handler, sender=InactiveUsers)
+#post_delete.connect(confirm_handler, sender=InactiveUsers)

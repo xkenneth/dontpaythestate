@@ -5,17 +5,7 @@ class Subscription(models.Model):
     email_address = models.EmailField(max_length=100,primary_key=True)
     year = models.IntegerField()
     month = models.IntegerField()
+    active = models.BooleanField(default=False,editable=False)
     
     def __unicode__(self):
         return self.email_address
-
-class InactiveUsers(models.Model):
-    email_address = models.EmailField(max_length=100)
-    uid = models.CharField(max_length=32,primary_key=True)
-    
-    def __unicode__(self):
-        return self.email_address
-    
-
-
-
